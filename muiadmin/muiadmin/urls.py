@@ -16,24 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.shortcuts import render
-
-
-def index(request) :
-    title = "Dashboard"
-    konteks = {
-        'title': title,
-    }
-    return render(request, 'dashboard.html', konteks)
-
-def sejarah(request) :
-    title = "Sejarah"
-    konteks = {
-        'title': title,
-    }
-    return render(request, 'sejarah.html', konteks)
+from berita.views import *
+from . import views
 
 urlpatterns = [
-    path('dashboard/', index),
-    path('sejarah/', sejarah),
+    path('admin/', admin.site.urls),
+    path('',views.index),
+    path('dashboard/',views.index),
+    path('berita/',Berita_View),
+    path('addberita/',tambah_berita),
+    path('ubah/<int:id_berita>',ubah_berita,name='ubah_berita'),
+    path('hapus/<int:id_berita>',hapus_berita,name='hapus_berita'),
 ]
