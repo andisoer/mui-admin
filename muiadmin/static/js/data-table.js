@@ -1,6 +1,8 @@
 (function($) {
   'use strict';
   $(function() {
+    const token = localStorage.getItem('accessToken');
+
     $('#order-listing').DataTable({
       "aLengthMenu": [
         [5, 10, 15, -1],
@@ -25,6 +27,10 @@
     $('#table-data-fatwa').DataTable({
       ajax:{
         url: 'http://127.0.0.1:8000/fatwa/',
+        type: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
         dataSrc:'',
       },
       // "aLengthMenu": [
