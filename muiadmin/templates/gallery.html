@@ -6,38 +6,42 @@
 
 <div class="container">
     <center>
-    <h2>List Gallery :</h2>
+    <h3>List Gallery :</h3>
     </center>
-    <div id="items" class="row">
-
-    </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      tambah barang
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin: 8px;">
+        Tambah Gallery
     </button>
 
-    <!-- Modal -->
+    <div id="gallery" class="row">
+    </div>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Foto Gallery</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form id="tambah_dt" class="signin-form">
+            <form id="tambah_dt" class="signin-form" enctype="multipart/form-data">
               <div id="message"></div>
               <div class="form-group">
-                <label class="form-control-placeholder" for="nama">Name</label>
-                <input type="text" class="form-control" id="nama" required>
+                <label class="form-control-placeholder"  style="font-size: 15px;" for="judul">Judul</label>
+                <input type="text" class="form-control" placeholder="Masukkan Judul" id="judul" required>
               </div>
               <div class="form-group">
-                <label class="form-control-placeholder" for="password">Description</label>
-                <input id="deskripsi" type="text" class="form-control" required>
+                <label class="form-control-placeholder" style="font-size: 15px;" for="gambar">Gambar</label>
+                <div class="container" style="margin-left: -10px;">
+                    <input type="file" id="gambar" name="filename">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-control-placeholder" style="font-size: 15px;" for="deskripsi">Deskripsi</label>
+                <textarea class="form-control" placeholder="Masukkan Deskripsi Gambar" id="deskripsi" required></textarea>
               </div>
               <div class="form-group mt-3">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-success">Simpan</button>
               </div>
             </form>
           </div>
@@ -46,47 +50,55 @@
     </div>
 
     <!-- Modal Edit -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Modal</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="updateItemForm" class="signin-form">
-              <div id="message"></div>
-              <div class="form-group">
-                <input type="hidden" class="form-control" id="updateItemId">
-              </div>
-              <div class="form-group">
-                <label class="form-control-placeholder" for="nama">Name</label>
-                <input type="text" class="form-control" id="edit-nama" required>
-              </div>
-              <div class="form-group">
-                <label class="form-control-placeholder" for="password">Description</label>
-                <input id="edit-deskripsi" type="text" class="form-control" required>
-              </div>
-              <div class="form-group mt-3">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-              </div>
-            </form>
-          </div>
+    <div class="modal fade" id="updateGallery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Foto Gallery</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateGalleryForm" class="signin-form" enctype="multipart/form-data">
+                    <div id="message"></div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="updateItemId">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-placeholder"  style="font-size: 15px;" for="judul">Judul</label>
+                            <input type="text" class="form-control" placeholder="Masukkan Judul" id="edit-judul" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-placeholder" style="font-size: 15px;" for="gambar">Gambar</label>
+                            <div class="container">
+                                <input type="file" id="edit-gambar" name="filename">
+                                <input type="text" id="edit-gambar-name" class="form-control" disabled style="display: none;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-placeholder" style="font-size: 15px;" for="deskripsi">Deskripsi</label>
+                            <textarea class="form-control" placeholder="Masukkan Deskripsi Gambar" id="edit-deskripsi" required></textarea>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#hapusGallery" data-id="${Gallery.id}">Hapus</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" style="margin-right: 5px;" class="btn btn-success">Simpan</button>
+                    </div>
+                </form>
+            </div>
+            </div>
         </div>
-      </div>
     </div>
     <!-- Modal Edit -->
     <!-- Modal Hapus -->
-    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="hapusGallery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Modal</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Foto</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <h3>Apakah anda yakin untuk menghapus item tersebut</h3>
+            <h3>Apakah anda yakin untuk menghapus Foto tersebut</h3>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
