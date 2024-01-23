@@ -20,9 +20,10 @@ class Berita(models.Model):
     judul=models.CharField(max_length=100)
     penulis=models.CharField(max_length=100)
     tanggal=models.CharField(max_length=50)
-    
+    isi=models.TextField(default="")
     foto=models.ImageField(upload_to=filepath, null=True, blank=True)
     waktu_posting=models.DateTimeField(auto_now_add=True)
     status=models.ForeignKey(Status,on_delete=models.CASCADE,null=True)
     def __str__(self):
         return "{}. {}".format(self.kode_berita,self.judul)
+    
