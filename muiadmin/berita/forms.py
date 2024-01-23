@@ -12,6 +12,6 @@ class FormBerita(ModelForm):
             'penulis': forms.TextInput({'class' : 'form-control'}),
             'tanggal': forms.TextInput({'class' : 'form-control'}),
             'foto' : forms.FileInput({'class' : 'form-control'}),
-            'isi' : forms.TextInput({'class' : 'form-control'}),
+            'isi' : forms.Textarea({'class' : 'form-control'}),
             'status': forms.Select({'class' : 'form-control'}),
         }
