@@ -4,5 +4,95 @@
 
 {% block sejarah %}
 
-<div> Halaman Gallery</div>
+<div class="container">
+    <center>
+    <h2>List Gallery :</h2>
+    </center>
+    <div id="items" class="row">
+
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      tambah barang
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="tambah_dt" class="signin-form">
+              <div id="message"></div>
+              <div class="form-group">
+                <label class="form-control-placeholder" for="nama">Name</label>
+                <input type="text" class="form-control" id="nama" required>
+              </div>
+              <div class="form-group">
+                <label class="form-control-placeholder" for="password">Description</label>
+                <input id="deskripsi" type="text" class="form-control" required>
+              </div>
+              <div class="form-group mt-3">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Modal</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="updateItemForm" class="signin-form">
+              <div id="message"></div>
+              <div class="form-group">
+                <input type="hidden" class="form-control" id="updateItemId">
+              </div>
+              <div class="form-group">
+                <label class="form-control-placeholder" for="nama">Name</label>
+                <input type="text" class="form-control" id="edit-nama" required>
+              </div>
+              <div class="form-group">
+                <label class="form-control-placeholder" for="password">Description</label>
+                <input id="edit-deskripsi" type="text" class="form-control" required>
+              </div>
+              <div class="form-group mt-3">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Edit -->
+    <!-- Modal Hapus -->
+    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Modal</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h3>Apakah anda yakin untuk menghapus item tersebut</h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="confirmDelete" class="btn btn-primary">hapus</button>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}
