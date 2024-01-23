@@ -14,7 +14,7 @@
                 {% endfor %}
            
 <h1 class="text-center">List Berita</h1>
-<a href="/addberita/" class="btn btn-outline-success">Tambah Berita</a>
+<a href="/addberita/" class="btn btn-success">Tambah Berita</a>
 <table border="1" class="table">
     <thead>
     <tr>
@@ -34,8 +34,8 @@
         <td>{{ Berita.penulis }}</td>
         <td>{{ Berita.tanggal }}</td>
         <td>{{ Berita.status.nama }}</td>
-        <td><a href="{% url 'ubah_berita' Berita.id %}"><button type="button" class="btn btn-success">Ubah</button></a></td>
-        <td><button type="button" class="btn btn-danger" data-bs-toggle="modal"
+        <td><a href="{% url 'ubah_berita' Berita.id %}"><button type="button" class="btn btn-outline-success">Ubah</button></a></td>
+        <td><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
             data-bs-target="#hapus{{ Berita.id }}">Hapus</button></td>
             <!-- Modal -->
             <div class="modal fade" id="hapus{{ Berita.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -49,8 +49,8 @@
                     Judul berita : {{ Berita.judul }}
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <a href="{% url 'hapus_berita' Berita.id %}" class="btn btn-danger">Yakin</a>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a href="{% url 'hapus_berita' Berita.id %}" class="btn btn-outline-danger">Yakin</a>
                     </div>
                 </div>
                 </div>

@@ -11,5 +11,7 @@ class FormBerita(ModelForm):
             'judul': forms.TextInput({'class' : 'form-control'}),
             'penulis': forms.TextInput({'class' : 'form-control'}),
             'tanggal': forms.TextInput({'class' : 'form-control'}),
+            'foto' : forms.FileInput({'class' : 'form-control'}),
+            
             'status': forms.Select({'class' : 'form-control'}),
         }

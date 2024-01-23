@@ -2,7 +2,7 @@ from django.contrib import admin
 from.models import Berita, Status
 # Register your models here.
 class kolomBerita(admin.ModelAdmin):
-    list_display=['kode_berita','judul','penulis','tanggal','status']
+    list_display=['kode_berita','judul','penulis','tanggal','foto','status']
     search_fields=['kode_berita','judul']
     list_filter=('status',)
     list_per_page=3

@@ -23,12 +23,12 @@
                     <div class="alert alert-success">{{ message }}</div>
                 {% endif %}
             {% endfor %}
-            <h3>Ubah : {{ Beritas.id_berita }} </h3>
-            <form action = "{% url 'ubah_berita' Beritas.id %}" method="post">
+            <h3>{{ Beritas.id_berita }} </h3>
+            <form action = "{% url 'ubah_berita' Beritas.id %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{form.as_p}}
-                <button type ="submit" class="btn btn-primary">Simpan</button>
-                <a href="/berita" class="btn btn-danger">Kembali</a>
+                <button type ="submit" class="btn btn-outline-success">Simpan</button>
+                <a href="/berita" class="btn btn-outline-danger">Kembali</a>
             </form>
         </div>
     </div>
