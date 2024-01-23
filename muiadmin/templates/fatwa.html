@@ -62,7 +62,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="forms-sample">
+                    <form id="tambahForm" class="forms-sample">
                         <div class="form-group">
                             <label for="titleFatwa">Judul</label>
                             <input type="text" class="form-control" id="titleFatwa" placeholder="Judul">
@@ -211,6 +211,11 @@
             $("#tambahModal").modal('hide');
         }
 
+        function resetFormTambah() {
+            const tambahForm = document.getElementById('tambahForm');
+            tambahForm.reset();
+        }
+
         function tambahFatwa() {
             const titleFatwa = document.getElementById('titleFatwa').value;
             const noFatwa = document.getElementById('nomorFatwa').value;
@@ -251,6 +256,7 @@
                 console.log('Success:', data);
                 refreshFatwaTable();
                 tambahFatwaModalHide();
+                resetFormTambah();
             })
             .catch(error => {
                 console.error('Error:', error);
