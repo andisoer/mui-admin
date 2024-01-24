@@ -32,8 +32,15 @@ def sejarah(request) :
         'title': title,
     }
     return render(request, 'sejarah.html', konteks)
+def gallery(request) :
+    title = "Gallery"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'gallery.html', konteks)
 
 urlpatterns = [
     path('dashboard/', index),
     path('sejarah/', sejarah),
+    path('gallery/', gallery),
 ]
