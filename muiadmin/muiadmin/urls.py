@@ -33,7 +33,16 @@ def sejarah(request) :
     }
     return render(request, 'sejarah.html', konteks)
 
+def konsultasi(request):
+    title = "konsultasi"
+    konteks = {
+        'title': title
+    }
+    return render(request, 'konsultasi.html',konteks)
+
 urlpatterns = [
     path('dashboard/', index),
     path('sejarah/', sejarah),
+    path('konsultasi/', konsultasi)
+    
 ]

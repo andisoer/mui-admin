@@ -5,4 +5,92 @@
 {% block dashboard %}
 
 <div> Halaman Dashboard</div>
+<main>
+    <div class="container pt-4">
+      <nav class="navbar navbar-light bg-light">
+        <form class="container-fluid">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">cari</span>
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+          </div>
+        </form>
+      </nav>
+          <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Form Berita</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Judul</label>
+                          <input type="text" class="form-control" name="judul_berita" id="judul_berita" placeholder="Masukkan Judul">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Thumbnail</label>
+                            <input type="file" class="form-control" name="sampul_berita" id="sampul_berita" placeholder="Masukkan Thumbnail">
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Isi Berita</label>
+                            <textarea class="form-control" rows="5" name="konten_berita" id="konten_berita"></textarea>
+                          </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success">Understood</button>
+                  <button type="button" class="btn btn-primary">Publish</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <table class="table table-bordered table-sm mt-3">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Judul</th>
+                <th>Status</th>
+                <th>Dibiuat Oleh</th>
+                <th>Tanggal Dibuat</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+                <td>John</td>
+                <td>Doe</td>
+                <td><button type="button" class="btn btn-warning">Balas</button>
+                    <button type="button" class="btn btn-danger">Hapus</button></td>
+              </tr>
+             
+            
+            </tbody>
+          </table>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          </div>
+
+</main>
 {% endblock %}
