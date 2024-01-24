@@ -17,23 +17,49 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
+from .forms import SejarahForm
+from .models import Sejarah
 
 
-def index(request) :
+def index(request):
     title = "Dashboard"
     konteks = {
-        'title': title,
+        "title": title,
     }
-    return render(request, 'dashboard.html', konteks)
+    return render(request, "dashboard.html", konteks)
 
-def sejarah(request) :
-    title = "Sejarah"
-    konteks = {
-        'title': title,
-    }
-    return render(request, 'sejarah.html', konteks)
+
+def upload_sejarah(request):
+    if request.method == "POST":
+        form = SejarahForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+    form = SejarahForm()
+    return render(request, "upload_sejarah.html", {"form": form})
+
+
+def get_sejarah(request):
+    content = Sejarah.objects.all()
+    context = {"post": content}
+    return render(request, "list_sejarah.html", context)
+
+
+def get_sejarah_byId_or_title(request, id=None, title=None):
+    if id is not None:
+        content = Sejarah.objects.get(id=id)
+    elif title is not None:
+        content = Sejarah.objects.filter(title=title).first()
+    else:
+        content = None
+    return render(request, "sejarah.html", {"post": content})
+
 
 urlpatterns = [
-    path('dashboard/', index),
-    path('sejarah/', sejarah),
+    path("", index),
+    path("dashboard/", index),
+    path("sejarah/", upload_sejarah),
+    path("sejarah/<int:id>/", get_sejarah_byId_or_title),
+    #path("sejarahs/", get_sejarah),
+    #path("sejarah/<str:title>/", get_sejarah_byId_or_title),
 ]
