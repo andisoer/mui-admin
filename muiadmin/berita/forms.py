@@ -6,11 +6,9 @@ class FormBerita(ModelForm):
         model=Berita
         fields='__all__'
 
-        widgets={
-            'kode_berita': forms.TextInput({'class' : 'form-control'}),
+        widgets={            
             'judul': forms.TextInput({'class' : 'form-control'}),
-            'penulis': forms.TextInput({'class' : 'form-control'}),
-            'tanggal': forms.TextInput({'class' : 'form-control'}),
+            'penulis': forms.TextInput({'class' : 'form-control'}),            
             'foto' : forms.FileInput({'class' : 'form-control'}),
             'isi' : forms.Textarea({'class' : 'form-control'}),
             'status': forms.Select({'class' : 'form-control'}),

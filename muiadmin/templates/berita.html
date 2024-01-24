@@ -14,7 +14,7 @@
                 {% endfor %}
            
 <h1 class="text-center">List Berita</h1>
-<a href="/addberita/" class="btn btn-success">Tambah Berita</a>
+<a href="/addberita/" class="btn btn-success teks-sukses">Tambah Berita</a>
 <table border="1" class="table">
     <thead>
     <tr>
@@ -29,13 +29,13 @@
     </tr>
 {% for Berita in Beritas %}
     <tr>
-        <td>{{ Berita.kode_berita }}</td>
+        <td>{{ Berita.id }}</td>
         <td>{{ Berita.judul }}</td>
         <td>{{ Berita.penulis }}</td>
         <td>{{ Berita.tanggal }}</td>
         <td>{{ Berita.status.nama }}</td>
-        <td><a href="{% url 'ubah_berita' Berita.id %}"><button type="button" class="btn btn-outline-success">Ubah</button></a></td>
-        <td><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+        <td><a href="{% url 'ubah_berita' Berita.id %}"><button type="button" class="teks-hatihati btn btn-warning ">Ubah</button></a></td>
+        <td><button type="button" class="btn btn-danger teks-ayahab" data-bs-toggle="modal"
             data-bs-target="#hapus{{ Berita.id }}">Hapus</button></td>
             <!-- Modal -->
             <div class="modal fade" id="hapus{{ Berita.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
