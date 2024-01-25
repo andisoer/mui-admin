@@ -15,6 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from berita.views import *
+from . import views
+
 from django.shortcuts import render
 from .forms import SejarahForm
 from .models import Sejarah
@@ -90,11 +93,19 @@ def register(request):
     return render(request, 'register.html', konteks)
 
 urlpatterns = [
-    path('dashboard/', index, name='dashboard'),
+    path('admin/', admin.site.urls),
+    path('',views.index),
+    path('dashboard/',views.index),
+    path('berita/',Berita_View),
+    path('addberita/',tambah_berita),
+    path('ubah/<int:id_berita>',ubah_berita,name='ubah_berita'),
+    path('hapus/<int:id_berita>',hapus_berita,name='hapus_berita'),
+    path('sejarah/', sejarah),
+    # path('dashboard/', index, name='dashboard'),
     path('sejarah/', sejarah, name='sejarah'),
     path('login/', login, name='login'),
     path('register/', register, name='register'),
-    path('sejarah/', sejarah),
+    # path('sejarah/', sejarah),
     path('konsultasi/', konsultasi),
     path("", index),
     path("sejarah/", upload_sejarah),
@@ -106,3 +117,4 @@ urlpatterns = [
     path('fatwa/', fatwa),
     path('gallery/', gallery),
 ]
+
