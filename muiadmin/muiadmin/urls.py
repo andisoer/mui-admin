@@ -14,26 +14,32 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
 
-
-def index(request) :
+def index(request):
     title = "Dashboard"
-    konteks = {
-        'title': title,
-    }
+    konteks = {'title': title}
     return render(request, 'dashboard.html', konteks)
 
-def sejarah(request) :
+def sejarah(request):
     title = "Sejarah"
-    konteks = {
-        'title': title,
-    }
+    konteks = {'title': title}
     return render(request, 'sejarah.html', konteks)
 
+def login(request):
+    title = "login"
+    konteks = {'title': title}
+    return render(request, 'login.html', konteks)
+
+def register(request):
+    title = "register"
+    konteks = {'title': title}
+    return render(request, 'register.html', konteks)
+
 urlpatterns = [
-    path('dashboard/', index),
-    path('sejarah/', sejarah),
+    path('dashboard/', index, name='dashboard'),
+    path('sejarah/', sejarah, name='sejarah'),
+    path('login/', login, name='login'),
+    path('register/', register, name='register'),
 ]
