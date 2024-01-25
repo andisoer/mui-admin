@@ -1,0 +1,379 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block sejarah %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Fatwa</h4>
+                    <div class="table-responsive">
+                        <button onclick="tambahFatwaModal()" class="btn btn-mui me-2">Tambah Data</button>
+                        <table id="table-data-fatwa" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Thumbnail</th>
+                                    <th>No Fatwa</th>
+                                    <th>Judul</th>
+                                    <th>Tanggal</th>
+                                    <th>Lampiran</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="hapusKonfirmasiModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Konfirmasi Hapus</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus item ini?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="hapusFatwa()">Hapus</button>
+                    <button type="button" class="btn btn-secondary" onclick="hapusFatwaModalHide()">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="tambahModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Fatwa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="tambahForm" class="forms-sample">
+                        <div class="form-group">
+                            <label for="titleFatwa">Judul</label>
+                            <input type="text" class="form-control" id="titleFatwa" placeholder="Judul">
+                        </div>
+                        <div class="form-group">
+                            <label for="nomorFatwa">Nomor Fatwa</label>
+                            <input type="text" class="form-control" id="nomorFatwa" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="nomorFatwa">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggalFatwa" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Thumbnail</label>
+                            <input type="file" name="thumbnail" id="thumbnailFatwa" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled
+                                    placeholder="Upload Thumbnail">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-mui" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Lampiran Fatwa</label>
+                            <input type="file" name="lampiran_fatwa" id="lampiranFatwa" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled
+                                    placeholder="Upload Lampiran Fatwa">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-mui" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="keteranganFatwa">Keterangan Fatwa</label>
+                            <textarea class="form-control" id="keteranganFatwa" rows="4"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-mui" onclick="tambahFatwa()">Tambah</button>
+                    <button type="button" class="btn btn-secondary" onclick="tambahFatwaModalHide()">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="ubahModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ubah Fatwa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="forms-sample">
+                        <div class="form-group">
+                            <label for="titleFatwaUbah">Judul</label>
+                            <input type="text" class="form-control" id="titleFatwaUbah" placeholder="Judul">
+                        </div>
+                        <div class="form-group">
+                            <label for="nomorFatwaUbah">Nomor Fatwa</label>
+                            <input type="text" class="form-control" id="nomorFatwaUbah" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggalFatwaUbah">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggalFatwaUbah" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Thumbnail</label>
+                            <input type="file" name="thumbnail" id="thumbnailFatwaUbah" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled
+                                    placeholder="Upload Thumbnail">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-mui" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Lampiran Fatwa</label>
+                            <input type="file" name="lampiran_fatwa" id="lampiranFatwaUbah" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled
+                                    placeholder="Upload Lampiran Fatwa">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-mui" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="keteranganFatwa">Keterangan Fatwa</label>
+                            <textarea class="form-control" id="keteranganFatwaUbah" rows="4"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-mui" onclick="ubahFatwa()">Ubah</button>
+                    <button type="button" class="btn btn-secondary" onclick="ubahFatwaModalHide()">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="lampiranModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lampiran Fatwa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe width="100%" height="500px" id="lampiranFatwaPreview" src=""></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="lampiranFatwaModalHide()">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let targetHapusId = null;
+        let targetUbahId = null;
+
+        function lampiranFatwaModal(url) {
+            const iframeFatwa = document.getElementById('lampiranFatwaPreview');
+            iframeFatwa.src = url;
+            $("#lampiranModal").modal('show');
+        }
+
+        function lampiranFatwaModalHide() {
+            $("#lampiranModal").modal('hide');
+        }
+
+        function tambahFatwaModal() {
+            $("#tambahModal").modal('show');
+        }
+
+        function tambahFatwaModalHide() {
+            $("#tambahModal").modal('hide');
+        }
+
+        function resetFormTambah() {
+            const tambahForm = document.getElementById('tambahForm');
+            tambahForm.reset();
+        }
+
+        function tambahFatwa() {
+            const titleFatwa = document.getElementById('titleFatwa').value;
+            const noFatwa = document.getElementById('nomorFatwa').value;
+            const tanggalFatwa = document.getElementById('tanggalFatwa').value;
+            const thumbnailFatwa = document.getElementById('thumbnailFatwa').files[0];
+            const lampiranFatwa = document.getElementById('lampiranFatwa').files[0];
+            const keteranganFatwa = document.getElementById('keteranganFatwa').value;
+
+            if (!titleFatwa || !noFatwa || !tanggalFatwa || !thumbnailFatwa || !lampiranFatwa || !keteranganFatwa) {
+                return;
+            }
+
+            const token = localStorage.getItem('accessToken');
+
+            const formData = new FormData();
+            formData.append('title', titleFatwa);
+            formData.append('no_fatwa', noFatwa);
+            formData.append('date', tanggalFatwa);
+            formData.append('keterangan', keteranganFatwa);
+            formData.append('thumbnail', thumbnailFatwa);
+            formData.append('lampiran_fatwa', lampiranFatwa);
+
+            fetch('http://127.0.0.1:8000/fatwa/', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong');
+                }
+            })
+            .then(data => {
+                console.log('Success:', data);
+                refreshFatwaTable();
+                tambahFatwaModalHide();
+                resetFormTambah();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function hapusFatwaModal(id) {
+            $("#hapusKonfirmasiModal").modal('show');
+            targetHapusId = id;
+        }
+
+        function hapusFatwaModalHide() {
+            $("#hapusKonfirmasiModal").modal('hide');
+            targetHapusId = null;
+        }
+
+        function hapusFatwa() {
+            const token = localStorage.getItem('accessToken');
+            fetch(`http://127.0.0.1:8000/fatwa/${targetHapusId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    if (response.status === 204) {
+                        hapusFatwaModalHide();
+                        refreshFatwaTable();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function ubahFatwaModal(id) {
+            $('#ubahModal').modal('show');
+            const token = localStorage.getItem('accessToken');
+            fetch(`http://127.0.0.1:8000/fatwa/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Isi formulir di modal dengan data yang ada
+                    document.getElementById('nomorFatwaUbah').value = data.no_fatwa;
+                    document.getElementById('titleFatwaUbah').value = data.title;
+                    document.getElementById('tanggalFatwaUbah').value = data.date;
+                    document.getElementById('keteranganFatwaUbah').value = data.keterangan;
+                    targetUbahId = data.id;
+
+                    // Tampilkan modal
+                    $('#updateItemModal').modal('show');
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function ubahFatwa() {
+            const titleFatwa = document.getElementById('titleFatwaUbah').value;
+            const noFatwa = document.getElementById('nomorFatwaUbah').value;
+            const tanggalFatwa = document.getElementById('tanggalFatwaUbah').value;
+            const thumbnailFatwa = document.getElementById('thumbnailFatwaUbah').files[0];
+            const lampiranFatwa = document.getElementById('lampiranFatwaUbah').files[0];
+            const keteranganFatwa = document.getElementById('keteranganFatwaUbah').value;
+
+            if (!titleFatwa || !noFatwa || !tanggalFatwa || !keteranganFatwa) {
+                return;
+            }
+
+            const token = localStorage.getItem('accessToken');
+
+            const formData = new FormData();
+            formData.append('title', titleFatwa);
+            formData.append('no_fatwa', noFatwa);
+            formData.append('date', tanggalFatwa);
+            formData.append('keterangan', keteranganFatwa);
+
+            if (thumbnailFatwa) {
+                formData.append('thumbnail', thumbnailFatwa);
+            }
+
+            if (lampiranFatwa) {
+                formData.append('lampiran_fatwa', lampiranFatwa);
+            }
+
+            fetch(`http://127.0.0.1:8000/fatwa/${targetUbahId}/`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Something went wrong');
+                }
+            })
+            .then(data => {
+                console.log('Success:', data);
+                refreshFatwaTable();
+                ubahFatwaModalHide();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function ubahFatwaModalHide() {
+            $('#ubahModal').modal('hide');
+            targetUbahId = null;
+        }
+
+        function refreshFatwaTable() {
+            var table = $('#table-data-fatwa').DataTable();
+            table.ajax.reload();
+        }
+    </script>
+
+    {% endblock %}
