@@ -16,16 +16,68 @@ Including another URLconf
 """
 from django.urls import path
 from django.shortcuts import render
+from .forms import SejarahForm
+from .models import Sejarah
+
 
 def index(request):
     title = "Dashboard"
-    konteks = {'title': title}
-    return render(request, 'dashboard.html', konteks)
+    konteks = {
+        "title": title,
+    }
+    return render(request, "dashboard.html", konteks)
+
+
+def upload_sejarah(request):
+    if request.method == "POST":
+        form = SejarahForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+    form = SejarahForm()
+    return render(request, "upload_sejarah.html", {"form": form})
+
+
+def get_sejarah(request):
+    content = Sejarah.objects.all()
+    context = {"post": content}
+    return render(request, "list_sejarah.html", context)
+
+
+def get_sejarah_byId_or_title(request, id=None, title=None):
+    if id is not None:
+        content = Sejarah.objects.get(id=id)
+    elif title is not None:
+        content = Sejarah.objects.filter(title=title).first()
+    else:
+        content = None
+    return render(request, "sejarah.html", {"post": content})
 
 def sejarah(request):
     title = "Sejarah"
     konteks = {'title': title}
     return render(request, 'sejarah.html', konteks)
+def gallery(request) :
+    title = "Gallery"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'gallery.html', konteks)
+
+def fatwa(request) :
+    title = "Fatwa"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'fatwa.html', konteks)
+
+
+def konsultasi(request):
+    title = "konsultasi"
+    konteks = {
+        'title': title
+    }
+    return render(request, 'konsultasi.html',konteks)
 
 def login(request):
     title = "login"
@@ -42,4 +94,15 @@ urlpatterns = [
     path('sejarah/', sejarah, name='sejarah'),
     path('login/', login, name='login'),
     path('register/', register, name='register'),
+    path('sejarah/', sejarah),
+    path('konsultasi/', konsultasi),
+    path("", index),
+    path("sejarah/", upload_sejarah),
+    path("sejarah/<int:id>/", get_sejarah_byId_or_title),
+    #path("sejarahs/", get_sejarah),
+
+    # path('dashboard/', index),
+    # path('sejarah/', sejarah),
+    path('fatwa/', fatwa),
+    path('gallery/', gallery),
 ]
