@@ -38,7 +38,11 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV="C:\Users\user\Documents\KULIAH\06. SEMESTER 5\Framework\UAS\Temp Admin\mui-admin\myenv"
+=======
+VIRTUAL_ENV="C:\Users\D\Downloads\mui-admin\mui-admin\myenv"
+>>>>>>> origin/master
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

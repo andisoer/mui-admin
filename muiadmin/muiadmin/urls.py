@@ -14,7 +14,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 from berita.views import *
 from . import views
@@ -57,11 +56,9 @@ def get_sejarah_byId_or_title(request, id=None, title=None):
         content = None
     return render(request, "sejarah.html", {"post": content})
 
-def sejarah(request) :
+def sejarah(request):
     title = "Sejarah"
-    konteks = {
-        'title': title,
-    }
+    konteks = {'title': title}
     return render(request, 'sejarah.html', konteks)
 def gallery(request) :
     title = "Gallery"
@@ -78,6 +75,23 @@ def fatwa(request) :
     return render(request, 'fatwa.html', konteks)
 
 
+def konsultasi(request):
+    title = "konsultasi"
+    konteks = {
+        'title': title
+    }
+    return render(request, 'konsultasi.html',konteks)
+
+def login(request):
+    title = "login"
+    konteks = {'title': title}
+    return render(request, 'login.html', konteks)
+
+def register(request):
+    title = "register"
+    konteks = {'title': title}
+    return render(request, 'register.html', konteks)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index),
@@ -87,6 +101,12 @@ urlpatterns = [
     path('ubah/<int:id_berita>',ubah_berita,name='ubah_berita'),
     path('hapus/<int:id_berita>',hapus_berita,name='hapus_berita'),
     path('sejarah/', sejarah),
+    # path('dashboard/', index, name='dashboard'),
+    path('sejarah/', sejarah, name='sejarah'),
+    path('login/', login, name='login'),
+    path('register/', register, name='register'),
+    # path('sejarah/', sejarah),
+    path('konsultasi/', konsultasi),
     path("", index),
     path("sejarah/", upload_sejarah),
     path("sejarah/<int:id>/", get_sejarah_byId_or_title),
