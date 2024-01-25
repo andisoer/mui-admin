@@ -75,9 +75,19 @@ def fatwa(request) :
     return render(request, 'fatwa.html', konteks)
 
 
+def konsultasi(request):
+    title = "konsultasi"
+    konteks = {
+        'title': title
+    }
+    return render(request, 'konsultasi.html',konteks)
+
 urlpatterns = [
+    path('dashboard/', index),
+    path('sejarah/', sejarah),
+    path('konsultasi/', konsultasi)
+    
     path("", index),
-    path("dashboard/", index),
     path("sejarah/", upload_sejarah),
     path("sejarah/<int:id>/", get_sejarah_byId_or_title),
     #path("sejarahs/", get_sejarah),

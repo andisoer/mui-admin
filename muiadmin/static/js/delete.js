@@ -1,45 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const galleryContainer = document.getElementById('Gallery');
-    let deleteGalleryId = null; // ID item yang akan dihapus
+    const itemsContainer = $("#datatable tbody");
+    let deleteItemId = null; // ID item yang akan dihapus
 
     // Event listener untuk tombol hapus
-    galleryContainer.addEventListener('click', function(e) {
-        if (e.target.classList.contains('delete-btn')) {
-            deleteGalleryId = e.target.getAttribute('data-id');
-            $('#deleteConfirmModal').modal('show');
-        }
+    itemsContainer.on('click', '.delete-btn', function(e) {
+        deleteItemId = $(this).data('id');
+        $('#hapusModal').modal('show');
     });
 
     // Event listener untuk konfirmasi hapus
-    document.getElementById('confirmDelete').addEventListener('click', function() {
-        if (deleteGalleryId) {
-            fetch(`http://127.0.0.1:8000/api/gallery/${deleteGalleryId}`, {
+    document.getElementById('persetujuan').addEventListener('click', function() {
+        if (deleteItemId) {
+            fetch(`http://127.0.0.2:8000/apia/konsultasi/${deleteItemId}`, {
                 method: 'DELETE', // Metode DELETE
                 headers: {
                     // 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: deleteGalleryId }) // Include the item ID in the request body
+                    'Content-Type': 'application/json',
+                }
             })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Gagal menghapus item');
                 }
                 // Cek apakah respons memiliki konten
-                if (response.status !== 204) { // 204 No Content
-                    return response.json();
-                }
+				if (response.status !== 204) { // 204 No Content
+					return response.json();
+				}
             })
             .then(() => {
                 console.log('Item dihapus');
-                $('#deleteConfirmModal').modal('hide');
+                $('#hapusModal').modal('hide');
                 // Opsional: Hapus elemen item dari UI atau refresh halaman
-                window.location.reload();
+				window.location.reload();
             })
-            .catch(error => {
-                console.error('Error:', error);
-                // Handle the error more gracefully, such as by displaying a message to the user
-            });
+            .catch(error => console.error('Error:', error));
         }
     });
 });

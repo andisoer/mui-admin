@@ -91,7 +91,7 @@
               <i class="mdi mdi-timer-sand menu-icon"></i>
               <span class="menu-title">Sejarah</span>
             </a>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/konsultasi">
               <i class="mdi mdi-chat menu-icon"></i>
               <span class="menu-title">Konsultasi</span>
             </a>
@@ -106,6 +106,9 @@
       <div class="main-panel">
         <div class="content-wrapper">
           {% block dashboard %}
+          {% endblock %}
+
+          {% block konsultasi %}
           {% endblock %}
 
           {% block sejarah %}
@@ -145,6 +148,9 @@
   <script src="{% static 'js/delete.js'%}"></script>
 
   <script src="{% static 'js/jquery.cookie.js'%}" type="text/javascript"></script>
+  <script src="{% static 'js/tambah_dt.js' %}"></script>
+  <script src="{% static 'js/scripts.js' %}"></script>
+  <script src="{% static 'js/delete.js' %}"></script>
 </body>
 
 </html>
