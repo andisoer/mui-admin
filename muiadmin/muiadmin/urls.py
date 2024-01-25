@@ -14,7 +14,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
 from .forms import SejarahForm
@@ -54,11 +53,9 @@ def get_sejarah_byId_or_title(request, id=None, title=None):
         content = None
     return render(request, "sejarah.html", {"post": content})
 
-def sejarah(request) :
+def sejarah(request):
     title = "Sejarah"
-    konteks = {
-        'title': title,
-    }
+    konteks = {'title': title}
     return render(request, 'sejarah.html', konteks)
 def gallery(request) :
     title = "Gallery"
@@ -82,11 +79,23 @@ def konsultasi(request):
     }
     return render(request, 'konsultasi.html',konteks)
 
+def login(request):
+    title = "login"
+    konteks = {'title': title}
+    return render(request, 'login.html', konteks)
+
+def register(request):
+    title = "register"
+    konteks = {'title': title}
+    return render(request, 'register.html', konteks)
+
 urlpatterns = [
-    path('dashboard/', index),
+    path('dashboard/', index, name='dashboard'),
+    path('sejarah/', sejarah, name='sejarah'),
+    path('login/', login, name='login'),
+    path('register/', register, name='register'),
     path('sejarah/', sejarah),
-    path('konsultasi/', konsultasi)
-    
+    path('konsultasi/', konsultasi),
     path("", index),
     path("sejarah/", upload_sejarah),
     path("sejarah/<int:id>/", get_sejarah_byId_or_title),
