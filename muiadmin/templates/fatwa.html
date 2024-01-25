@@ -193,29 +193,35 @@
         let targetHapusId = null;
         let targetUbahId = null;
 
+        //  Menampilkan lampiran fatwa (tidak digunakan)
         function lampiranFatwaModal(url) {
             const iframeFatwa = document.getElementById('lampiranFatwaPreview');
             iframeFatwa.src = url;
             $("#lampiranModal").modal('show');
         }
 
+        // Menutup modal lampiran fatwa (tidak digunakan)
         function lampiranFatwaModalHide() {
             $("#lampiranModal").modal('hide');
         }
 
+        // Membuka modal Tambah Fatwa
         function tambahFatwaModal() {
             $("#tambahModal").modal('show');
         }
 
+        // Menutup modal Tambah Fatwa
         function tambahFatwaModalHide() {
             $("#tambahModal").modal('hide');
         }
 
+        // Reset form Tambah fatwa
         function resetFormTambah() {
             const tambahForm = document.getElementById('tambahForm');
             tambahForm.reset();
         }
 
+        // Proses mengirimkan inputan tambah fatwa kita ke backend
         function tambahFatwa() {
             const titleFatwa = document.getElementById('titleFatwa').value;
             const noFatwa = document.getElementById('nomorFatwa').value;
@@ -263,16 +269,19 @@
             });
         }
 
+        // Membuka modal konfirmasi hapus fatwa
         function hapusFatwaModal(id) {
             $("#hapusKonfirmasiModal").modal('show');
             targetHapusId = id;
         }
 
+        // Menutup modal konfirmasi hapus fatwa
         function hapusFatwaModalHide() {
             $("#hapusKonfirmasiModal").modal('hide');
             targetHapusId = null;
         }
 
+        // Proses hapus fatwa 
         function hapusFatwa() {
             const token = localStorage.getItem('accessToken');
             fetch(`http://127.0.0.1:8000/fatwa/${targetHapusId}`, {
@@ -290,6 +299,7 @@
                 .catch(error => console.error('Error:', error));
         }
 
+        // Membuka modal ubah fatwa dan menampilkan data
         function ubahFatwaModal(id) {
             $('#ubahModal').modal('show');
             const token = localStorage.getItem('accessToken');
@@ -313,6 +323,7 @@
                 .catch(error => console.error('Error:', error));
         }
 
+        // proses ubah data fatwa
         function ubahFatwa() {
             const titleFatwa = document.getElementById('titleFatwaUbah').value;
             const noFatwa = document.getElementById('nomorFatwaUbah').value;
@@ -365,11 +376,13 @@
             });
         }
 
+        // Menutup modal ubah fatwa
         function ubahFatwaModalHide() {
             $('#ubahModal').modal('hide');
             targetUbahId = null;
         }
 
+        // Memperbarui data yang ada di table list fatwa
         function refreshFatwaTable() {
             var table = $('#table-data-fatwa').DataTable();
             table.ajax.reload();
