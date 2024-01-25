@@ -32,6 +32,12 @@ def sejarah(request) :
         'title': title,
     }
     return render(request, 'sejarah.html', konteks)
+def gallery(request) :
+    title = "Gallery"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'gallery.html', konteks)
 
 def fatwa(request) :
     title = "Fatwa"
@@ -44,4 +50,5 @@ urlpatterns = [
     path('dashboard/', index),
     path('sejarah/', sejarah),
     path('fatwa/', fatwa),
+    path('gallery/', gallery),
 ]
