@@ -4,5 +4,30 @@
 
 {% block dashboard %}
 
-<div> Halaman Dashboard</div>
+<div class="container mt-3 ms-3">
+    <h2>Home Control Website MUI Batu</h2>
+    <div class="mb-3 mt-3">
+        <form id="editJudul">
+            <div id="form-judul"></div>
+            <button type="submit" class="btn btn-success mt-3 fw-medium text-white">Simpan</button>
+        </form>
+
+        <form id="editDeskripsi">
+            <div id="form-deskripsi"></div>
+            <button type="submit" class="btn btn-success mt-3 fw-medium text-white">Simpan</button>
+        </form>
+
+        <form id="editLinkVideo">
+            <div id="form-link-video"></div>
+            <button type="submit" class="btn btn-success mt-3 fw-medium text-white">Simpan</button>
+        </form>
+    </div>
+</div>
+
+<!-- <script src="{% static 'js/api_home_admin.js'%}"></script>
+<script src="{% static 'js/update_judul.js'%}"></script>
+<script src="{% static 'js/update_deskripsi.js'%}"></script>
+<script src="{% static 'js/update_link.js'%}"></script> -->
+
+<script src="{% static 'js/home.js'%}"></script>
 {% endblock %}
