@@ -15,9 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from berita.views import *
+from . import views
+
 from django.shortcuts import render
 from .forms import SejarahForm
 from .models import Sejarah
+from django.contrib import admin
 
 
 def index(request):
@@ -57,6 +61,7 @@ def sejarah(request):
     title = "Sejarah"
     konteks = {'title': title}
     return render(request, 'sejarah.html', konteks)
+
 def gallery(request) :
     title = "Gallery"
     konteks = {
@@ -104,15 +109,21 @@ def register(request) :
     return render(request, 'register.html', konteks)
 
 urlpatterns = [
-    path('dashboard/', index, name='dashboard'),
+    path('admin/', admin.site.urls),
+    path('',views.index),
+    path('dashboard/',views.index),
+    path('berita/',Berita_View),
+    path('addberita/',tambah_berita),
+    path('ubah/<int:id_berita>',ubah_berita,name='ubah_berita'),
+    path('hapus/<int:id_berita>',hapus_berita,name='hapus_berita'),
+    path('sejarah/', sejarah),
+    # path('dashboard/', index, name='dashboard'),
     path('sejarah/', sejarah, name='sejarah'),
     path('login/', login, name='login'),
     path('register/', register, name='register'),
-    path('sejarah/', sejarah),
-<<<<<<< HEAD
+    # path('sejarah/', sejarah),
     path('login/',login),
     path('register/',register),
-=======
     path('konsultasi/', konsultasi),
     path("", index),
     path("sejarah/", upload_sejarah),
@@ -123,5 +134,5 @@ urlpatterns = [
     # path('sejarah/', sejarah),
     path('fatwa/', fatwa),
     path('gallery/', gallery),
->>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
 ]
+

@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block berita %}
+
+<header class="masthead"></header>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+                {% for message in messages %}
+                    {% if message %}
+                        <div class="alert alert-succes">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+           
+<h1 class="text-center">List Berita</h1>
+<a href="/addberita/" class="btn btn-success teks-sukses">Tambah Berita</a>
+<table border="1" class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Judul</th>
+        <th>Penulis</th>
+        <th>Tanggal</th>
+        <th>Status</th>
+        <th>Opsi</th>
+        <th> </th>
+    </thead>
+    </tr>
+{% for Berita in Beritas %}
+    <tr>
+        <td>{{ Berita.id }}</td>
+        <td>{{ Berita.judul }}</td>
+        <td>{{ Berita.penulis }}</td>
+        <td>{{ Berita.tanggal }}</td>
+        <td>{{ Berita.status.nama }}</td>
+        <td><a href="{% url 'ubah_berita' Berita.id %}"><button type="button" class="teks-hatihati btn btn-warning ">Ubah</button></a></td>
+        <td><button type="button" class="btn btn-danger teks-ayahab" data-bs-toggle="modal"
+            data-bs-target="#hapus{{ Berita.id }}">Hapus</button></td>
+            <!-- Modal -->
+            <div class="modal fade" id="hapus{{ Berita.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Yakin akan dihapus?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    Judul berita : {{ Berita.judul }}
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a href="{% url 'hapus_berita' Berita.id %}" class="btn btn-outline-danger">Yakin</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}
