@@ -40,8 +40,13 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+<<<<<<< HEAD
               img src="{% static 'images/faces/face5.jpg'%}" alt="profile" />
               <span class="nav-profile-name">Louis Barnett</span>
+=======
+              <img src="{% static 'images/faces/face5.jpg'%}" alt="profile" />
+              <span class="nav-profile-name">Prof.Dr. KH Ma'ruf Amin</span>
+>>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -79,11 +84,11 @@
               <i class="mdi mdi-newspaper menu-icon"></i>
               <span class="menu-title">Berita</span>
             </a>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/fatwa">
               <i class="mdi mdi-bullhorn menu-icon"></i>
               <span class="menu-title">Fatwa</span>
             </a>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/gallery">
               <i class="mdi mdi-image-multiple menu-icon"></i>
               <span class="menu-title">Gallery</span>
             </a>
@@ -91,7 +96,7 @@
               <i class="mdi mdi-timer-sand menu-icon"></i>
               <span class="menu-title">Sejarah</span>
             </a>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/konsultasi">
               <i class="mdi mdi-chat menu-icon"></i>
               <span class="menu-title">Konsultasi</span>
             </a>
@@ -107,6 +112,9 @@
       <div class="main-panel">
         <div class="content-wrapper">
           {% block dashboard %}
+          {% endblock %}
+
+          {% block konsultasi %}
           {% endblock %}
 
           {% block sejarah %}
@@ -140,10 +148,19 @@
   <script src="{% static 'js/dashboard.js'%}"></script>
   <script src="{% static 'js/data-table.js'%}"></script>
   <script src="{% static 'js/jquery.dataTables.js'%}"></script>
+  <script src="{% static 'js/file-upload.js'%}"></script>
   <script src="{% static 'js/dataTables.bootstrap4.js'%}"></script>
   <!-- End custom js for this page-->
 
+  <script src="{% static 'js/Script.js'%}"></script>
+  <script src="{% static 'js/tambah_Data.js'%}"></script>
+  <script src="{% static 'js/update.js'%}"></script>
+  <script src="{% static 'js/delete.js'%}"></script>
+
   <script src="{% static 'js/jquery.cookie.js'%}" type="text/javascript"></script>
+  <script src="{% static 'js/tambah_dt.js' %}"></script>
+  <script src="{% static 'js/scripts.js' %}"></script>
+  <script src="{% static 'js/delete.js' %}"></script>
 </body>
 
 </html>

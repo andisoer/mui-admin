@@ -28,6 +28,10 @@ deactivate () {
     fi
 
     unset VIRTUAL_ENV
+<<<<<<< HEAD
+=======
+    unset VIRTUAL_ENV_PROMPT
+>>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
     if [ ! "${1:-}" = "nondestructive" ] ; then
     # Self destruct!
         unset -f deactivate
@@ -37,7 +41,11 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV="C:\Users\lenovo\Documents\Kuliah\Framework\mui-admin\mui-admin\myenv"
+=======
+VIRTUAL_ENV="C:\Users\D\Downloads\mui-admin\mui-admin\myenv"
+>>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -56,6 +64,11 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
     PS1="(myenv) ${PS1:-}"
     export PS1
+<<<<<<< HEAD
+=======
+    VIRTUAL_ENV_PROMPT="(myenv) "
+    export VIRTUAL_ENV_PROMPT
+>>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
 fi
 
 # This should detect bash and zsh, which have a hash command that must

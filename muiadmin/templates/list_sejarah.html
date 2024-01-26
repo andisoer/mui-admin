@@ -1,0 +1,21 @@
+{% extends 'index.html' %} {% load static %} {% block sejarah %}
+
+<div>Halaman Sejarah</div>
+<div class="container">
+	<br />
+	<div class="row">
+		{% for pos in post %}
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">{{ pos.title }}</h5>
+					<p class="card-text">{{ pos.content }}</p>
+					<a href="{{ pos.url }}" class="btn btn-primary">Selengkapnya</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'index.html' %} {% load static %} {% block sejarah %}
+
+<div>Halaman Sejarah</div>
+<form action="" method="post">
+	{{form}} {% csrf_token %}
+	<br>
+	<button type="submit">Simpan</button>
+</form>
+</div>
+{% endblock %}

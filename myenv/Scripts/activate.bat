@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=C:\Users\lenovo\Documents\Kuliah\Framework\mui-admin\mui-admin\myenv
+=======
+set VIRTUAL_ENV=C:\Users\D\Downloads\mui-admin\mui-admin\myenv
+>>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
 
 if not defined PROMPT set PROMPT=$P$G
 
@@ -25,6 +29,10 @@ if defined _OLD_VIRTUAL_PATH set PATH=%_OLD_VIRTUAL_PATH%
 if not defined _OLD_VIRTUAL_PATH set _OLD_VIRTUAL_PATH=%PATH%
 
 set PATH=%VIRTUAL_ENV%\Scripts;%PATH%
+<<<<<<< HEAD
+=======
+set VIRTUAL_ENV_PROMPT=(myenv) 
+>>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
 
 :END
 if defined _OLD_CODEPAGE (
