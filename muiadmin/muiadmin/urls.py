@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.urls import path
 from berita.views import *
+from .views import *
 from . import views
 
 from django.shortcuts import render
@@ -109,7 +110,7 @@ def register(request) :
     return render(request, 'register.html', konteks)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('adminLogin/', admin.site.urls),
     path('',views.index),
     path('dashboard/',views.index),
     path('berita/',Berita_View),
@@ -134,5 +135,7 @@ urlpatterns = [
     # path('sejarah/', sejarah),
     path('fatwa/', fatwa),
     path('gallery/', gallery),
+
+    path('admin/', indexAdmin),
 ]
 

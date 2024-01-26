@@ -9,7 +9,12 @@ def index(request) :
     }
     return render(request, 'dashboard.html', konteks)
 
-
+def indexAdmin(request) :
+    title = "Admin"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'admin/tampil_admin.html', konteks)
 
 urlpatterns = [
     path('dashboard/', index),
