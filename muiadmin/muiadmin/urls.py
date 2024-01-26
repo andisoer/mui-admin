@@ -21,6 +21,7 @@ from . import views
 from django.shortcuts import render
 from .forms import SejarahForm
 from .models import Sejarah
+from django.contrib import admin
 
 
 def index(request):
