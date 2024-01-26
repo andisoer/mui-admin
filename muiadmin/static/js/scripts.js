@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+document.addEventListener('DOMContentLoaded', function() {
+    fetchItems();
+});
+
+function fetchItems() {
+//const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMzg4NTQ0LCJpYXQiOjE3MDIzODgyNDQsImp0aSI6Ijk2NmYxMGRkODBhNDQ2NDhiMWI0Y2E5YmQxOTgwMDJjIiwidXNlcl9pZCI6MX0.k8HnJDtYjvcjrY3DoSiK6mfgM5CcysUv7mtcrmunpbQ';
+    const token = localStorage.getItem('accessToken');
+fetch('http://127.0.0.1:8000/api/item/' , {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }) // Ganti dengan URL API Anda
+=======
 document.addEventListener('DOMContentLoaded',function(){
     fetchItems();
 });
@@ -12,11 +26,28 @@ function fetchItems(){
         }
     }
     )
+>>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
         .then(response => response.json())
         .then(data => displayItems(data))
         .catch(error => console.error('Error:', error));
 }
 
+<<<<<<< HEAD
+function displayItems(items) {
+    const itemsContainer = document.getElementById('items');
+    items.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('col-md-6');
+        itemElement.innerHTML = `
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">${item.name}</h5>
+                    <p class="card-text">${item.description}</p>
+                </div>
+            </div>
+        `;
+        itemsContainer.appendChild(itemElement);
+=======
 function displayItems(konsultansis){
     const itemsContainer = $("#datatable tbody");
 
@@ -38,5 +69,6 @@ function displayItems(konsultansis){
         `);
         
         itemsContainer.append(row);
+>>>>>>> 20312ce2f4285dc82fcf2254e9efb53afd542362
     });
 }

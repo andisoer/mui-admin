@@ -94,6 +94,20 @@ def register(request):
     konteks = {'title': title}
     return render(request, 'register.html', konteks)
 
+def login(request) :
+    title = "login"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'login.html', konteks)
+
+def register(request) :
+    title = "register"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'register.html', konteks)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index),
@@ -108,6 +122,8 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('register/', register, name='register'),
     # path('sejarah/', sejarah),
+    path('login/',login),
+    path('register/',register),
     path('konsultasi/', konsultasi),
     path("", index),
     path("sejarah/", upload_sejarah),
