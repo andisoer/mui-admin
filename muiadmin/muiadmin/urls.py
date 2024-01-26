@@ -33,7 +33,23 @@ def sejarah(request) :
     }
     return render(request, 'sejarah.html', konteks)
 
+def login(request) :
+    title = "login"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'login.html', konteks)
+
+def register(request) :
+    title = "register"
+    konteks = {
+        'title': title,
+    }
+    return render(request, 'register.html', konteks)
+
 urlpatterns = [
     path('dashboard/', index),
     path('sejarah/', sejarah),
+    path('login/',login),
+    path('register/',register),
 ]
