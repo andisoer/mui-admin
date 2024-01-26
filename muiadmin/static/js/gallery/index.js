@@ -1,24 +1,26 @@
-document.addEventListener('DOMContentLoaded',function(){
+document.addEventListener('DOMContentLoaded', function () {
     fetchGallery();
 });
 
-function fetchGallery(){
+function fetchGallery() {
     // const token = localStorage.getGallery('accessToken');
     // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTQxNzY1LCJpYXQiOjE3MDMxNDE0NjUsImp0aSI6IjMzNmZkYmJjMGU0MDQyNzk5YjA4MmU5OWU3NTAxMGUwIiwidXNlcl9pZCI6MX0.iBoa54Np8fhijkwiqIWi9cJFsr_e7O7GBEfy8LN6y9E';
     fetch('http://127.0.0.1:8000/api/gallery/',
-    {
-        headers: {
-            // 'Authorization' : `Bearer ${token}`
+        {
+            headers: {
+                // 'Authorization' : `Bearer ${token}`
+            }
         }
-    }
     )
         .then(response => response.json())
-        .then(data => displayItems(data))
+        .then((data) => {
+            displayGallery(data);
+        })
         .catch(error => console.error('Error:', error));
 }
 
-function displayItems(gallery){
-    const itemsContainer = document.getElementById('gallery')
+function displayGallery(gallery) {
+    const itemsContainer = document.getElementById('gallery');
     gallery.forEach(gallery => {
         const itemElement = document.createElement('div');
         itemElement.classList.add('col-md-2');
@@ -35,29 +37,28 @@ function displayItems(gallery){
     });
 
     document.querySelectorAll('.update-btn').forEach(button => {
-        button.addEventListener('click', function(){
+        button.addEventListener('click', function () {
             openUpdateModal(this.getAttribute('data-id'));
         });
     });
 }
 
-function openUpdateModal(id){
+function openUpdateModal(id) {
     // const token = localStorage.getItem('accessToken');
-    fetch(`http://127.0.0.1:8000/api/gallery/${id}`,{
+    fetch(`http://127.0.0.1:8000/api/gallery/${id}`, {
         headers: {
             // 'Authorization' : `Bearer ${token}`
         }
     })
-    .then(response => response.json())
-    .then(data =>{
-        document.getElementById('edit-judul').value = data.Judul;
-        const imgElement = document.getElementById('edit-gambar');
-        imgElement.src = data.Gambar;
-        document.getElementById('edit-deskripsi').value = data.Deskripsi;
-        document.getElementById('updateItemId').value = data.id;
-        document.getElementById('edit-gambar-name').value = data.Gambar.split('/').pop();
-        $('#updateModal').modal('show');
-    })
-    .catch(error => console.error('Error:', error));
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('edit-judul').value = data.Judul;
+            const imgElement = document.getElementById('edit-gambar');
+            imgElement.src = data.Gambar;
+            document.getElementById('edit-deskripsi').value = data.Deskripsi;
+            document.getElementById('updateItemId').value = data.id;
+            document.getElementById('edit-gambar-name').value = data.Gambar.split('/').pop();
+            $('#updateModal').modal('show');
+        })
+        .catch(error => console.error('Error:', error));
 }
-

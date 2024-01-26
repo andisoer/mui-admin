@@ -61,6 +61,7 @@ def sejarah(request):
     title = "Sejarah"
     konteks = {'title': title}
     return render(request, 'sejarah.html', konteks)
+
 def gallery(request) :
     title = "Gallery"
     konteks = {
