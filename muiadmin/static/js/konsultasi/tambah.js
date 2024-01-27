@@ -1,6 +1,4 @@
-document.getElementById('tambah_dt').addEventListener('submit', function(e) {e.preventDefault();
-    
-    
+document.getElementById('form_tambah_konsultasi').addEventListener('submit', function(e) {e.preventDefault();
     const nama = document.getElementById('nama').value;
     const email = document.getElementById('email').value;
     const telp = document.getElementById('telp').value;
@@ -8,7 +6,7 @@ document.getElementById('tambah_dt').addEventListener('submit', function(e) {e.p
     const pesan = document.getElementById('pesan').value;
     const token = localStorage.getItem('accessToken');
 
-    fetch('http://127.0.0.2:8000/apia/konsultasi/',{
+    fetch('http://127.0.0.1:8000/api/konsultasi/',{
         method: 'POST',
         headers: 
             {

@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listener untuk tombol hapus
     galleryContainer.addEventListener('click', function(e) {
         if (e.target.classList.contains('delete-btn')) {
-            console.log('test');
             deleteGalleryId = e.target.getAttribute('data-id');
             $('#deleteConfirmModal').modal('show');
         }

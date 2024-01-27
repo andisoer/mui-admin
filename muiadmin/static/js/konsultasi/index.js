@@ -1,24 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetchItems();
+    fetchKonsultasi();
 });
 
-function fetchItems() {
-    // const token = localStorage.getItem('accessToken');
-    // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMTQxNzY1LCJpYXQiOjE3MDMxNDE0NjUsImp0aSI6IjMzNmZkYmJjMGU0MDQyNzk5YjA4MmU5OWU3NTAxMGUwIiwidXNlcl9pZCI6MX0.iBoa54Np8fhijkwiqIWi9cJFsr_e7O7GBEfy8LN6y9E';
-    fetch('http://127.0.0.2:8000/apia/konsultasi/',
+function fetchKonsultasi() {
+    const token = localStorage.getItem('accessToken');
+    fetch('http://127.0.0.1:8000/api/konsultasi/',
         {
             headers: {
-                // 'Authorization' : `Bearer ${token}`
+                'Authorization' : `Bearer ${token}`
             }
         }
     )
 
         .then(response => response.json())
-        .then(data => displayItems(data))
+        .then(data => displayKonsultasi(data))
         .catch(error => console.error('Error:', error));
 }
 
-function displayItems(konsultansis){
+function displayKonsultasi(konsultansis){
     const itemsContainer = $("#datatable tbody");
 
     konsultansis.forEach((konsultasi) => {

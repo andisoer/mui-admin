@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listener untuk konfirmasi hapus
     document.getElementById('persetujuan').addEventListener('click', function() {
         if (deleteItemId) {
-            fetch(`http://127.0.0.2:8000/apia/konsultasi/${deleteItemId}`, {
+            fetch(`http://127.0.0.1:8000/api/konsultasi/${deleteItemId}`, {
                 method: 'DELETE', // Metode DELETE
                 headers: {
                     // 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
