@@ -34,6 +34,30 @@ def sejarah(request) :
     return render(request, 'sejarah.html', konteks)
 
 urlpatterns = [
+<<<<<<< Updated upstream
     path('dashboard/', index),
     path('sejarah/', sejarah),
+=======
+    path('adminLogin/', admin.site.urls),
+    path('',views.index),
+    path('dashboard/',views.index),
+    path('berita/',Berita_View),
+    path('addberita/',tambah_berita),
+    path('ubah/<int:id_berita>',ubah_berita,name='ubah_berita'),
+    path('hapus/<int:id_berita>',hapus_berita,name='hapus_berita'),
+    path('login/', login, name='login'),
+    path('register/', register, name='register'),
+    path('login/',login),
+    path('register/',register),
+    path('konsultasi/', konsultasi),
+    path("", index),
+    path("sejarah/", upload_sejarah),
+    path("sejarah/<int:id>/", get_sejarah_byId_or_title),
+    path('fatwa/', fatwa),
+    path('gallery/', gallery),
+    path('api/', include('tentang.urls')),
+    path('sejarah/', sejarah),
+    path('tentang/', include('tentang.urls')),
+    path('admin/', indexAdmin),
+>>>>>>> Stashed changes
 ]
