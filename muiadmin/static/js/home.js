@@ -1,7 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetchItems();
-
+    fetchHome();
 });
+
+// In your fetchItems() function, update the display calls
+function fetchHome() {
+    const token = localStorage.getItem('accessToken');
+    console.log('panggil');
+    fetch('http://127.0.0.1:8000/api/home/', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            displayJudul(data);
+            displayDeskripsi(data);
+            displayLinkVideo(data);
+        })
+        .catch(error => console.error('Error: ', error));
+}
+
 
 function displayJudul(items) {
     const itemsContainer = document.getElementById('form-judul');
@@ -51,23 +69,6 @@ function displayLinkVideo(items) {
     });
 }
 
-// In your fetchItems() function, update the display calls
-function fetchItems() {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MTY0NDAzLCJpYXQiOjE3MDYxNTcyMDMsImp0aSI6IjdmYTBkODhiNTI0YzQzOGNiM2FlYzM3M2QxYTNjODEyIiwidXNlcl9pZCI6MX0.0VtwvNSGqHbGuHM7dWD3BaHqJSyXMIbcwQBR683wi98";
-    fetch('http://127.0.0.1:8000/api/home/', {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            displayJudul(data);
-            displayDeskripsi(data);
-            displayLinkVideo(data);
-        })
-        .catch(error => console.error('Error: ', error));
-}
-
 // Update your PATCH request for judul
 document.getElementById('editJudul').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -76,8 +77,7 @@ document.getElementById('editJudul').addEventListener('submit', function (e) {
     const data = {
         judul: itemJudul,
     };
-    const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MTY0NDAzLCJpYXQiOjE3MDYxNTcyMDMsImp0aSI6IjdmYTBkODhiNTI0YzQzOGNiM2FlYzM3M2QxYTNjODEyIiwidXNlcl9pZCI6MX0.0VtwvNSGqHbGuHM7dWD3BaHqJSyXMIbcwQBR683wi98";
-    updateItem(itemId, data, getToken);
+    updateItem(itemId, data);
 });
 
 // Add a similar event listener for the deskripsi form
@@ -88,8 +88,7 @@ document.getElementById('editDeskripsi').addEventListener('submit', function (e)
     const data = {
         deskripsi: itemDeskripsi,
     };
-    const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MTY0NDAzLCJpYXQiOjE3MDYxNTcyMDMsImp0aSI6IjdmYTBkODhiNTI0YzQzOGNiM2FlYzM3M2QxYTNjODEyIiwidXNlcl9pZCI6MX0.0VtwvNSGqHbGuHM7dWD3BaHqJSyXMIbcwQBR683wi98";
-    updateItem(itemId, data, getToken);
+    updateItem(itemId, data);
 });
 
 // Add a similar event listener for the link video form
@@ -100,12 +99,12 @@ document.getElementById('editLinkVideo').addEventListener('submit', function (e)
     const data = {
         link_video: itemLinkVideo,
     };
-    const getToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MTY0NDAzLCJpYXQiOjE3MDYxNTcyMDMsImp0aSI6IjdmYTBkODhiNTI0YzQzOGNiM2FlYzM3M2QxYTNjODEyIiwidXNlcl9pZCI6MX0.0VtwvNSGqHbGuHM7dWD3BaHqJSyXMIbcwQBR683wi98";
     updateItem(itemId, data, getToken);
 });
 
 // Refactor the common logic for updating items
-function updateItem(itemId, data, token) {
+function updateItem(itemId, data) {
+    const token = localStorage.getItem('accessToken');
     fetch(`http://127.0.0.1:8000/api/home/${itemId}/`, {
         method: 'PATCH',
         headers: {
